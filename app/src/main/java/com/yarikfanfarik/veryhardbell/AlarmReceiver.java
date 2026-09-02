@@ -1,0 +1,6 @@
+package com.yarikfanfarik.veryhardbell;
+import android.app.*;import android.content.*;import android.os.*;import java.util.*;
+public class AlarmReceiver extends BroadcastReceiver{
+ public static void schedule(Context c){AlarmManager am=(AlarmManager)c.getSystemService(Context.ALARM_SERVICE);int h=c.getSharedPreferences("bell",0).getInt("hour",7),m=c.getSharedPreferences("bell",0).getInt("minute",0);Calendar x=Calendar.getInstance();x.set(Calendar.HOUR_OF_DAY,h);x.set(Calendar.MINUTE,m);x.set(Calendar.SECOND,0);x.set(Calendar.MILLISECOND,0);if(x.getTimeInMillis()<=System.currentTimeMillis())x.add(Calendar.DAY_OF_YEAR,1);PendingIntent pi=PendingIntent.getBroadcast(c,42,new Intent(c,AlarmReceiver.class),PendingIntent.FLAG_UPDATE_CURRENT|PendingIntent.FLAG_IMMUTABLE);if(am!=null){if(Build.VERSION.SDK_INT>=23)am.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,x.getTimeInMillis(),pi);else am.setExact(AlarmManager.RTC_WAKEUP,x.getTimeInMillis(),pi);}}
+ @Override public void onReceive(Context c,Intent i){Intent a=new Intent(c,AlarmActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);c.startActivity(a);if(c.getSharedPreferences("bell",0).getBoolean("repeat",true))schedule(c);}
+}
