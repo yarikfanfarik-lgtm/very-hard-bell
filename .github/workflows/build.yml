@@ -17,9 +17,9 @@ jobs:
         run: |
           wget -q https://services.gradle.org/distributions/gradle-8.11.1-bin.zip
           unzip -q gradle-8.11.1-bin.zip -d "$RUNNER_TEMP"
-      - name: Build release APK
-        run: "$RUNNER_TEMP/gradle-8.11.1/bin/gradle --no-daemon :app:assembleRelease"
+      - name: Build installable debug APK
+        run: "$RUNNER_TEMP/gradle-8.11.1/bin/gradle --no-daemon :app:assembleDebug"
       - uses: actions/upload-artifact@v4
         with:
           name: very-hard-bell-apk
-          path: app/build/outputs/apk/release/app-release-unsigned.apk
+          path: app/build/outputs/apk/debug/app-debug.apk
