@@ -1,5 +1,5 @@
 package com.yarikfanfarik.veryhardbell;
-import android.app.*;import android.content.*;import android.os.*;import android.provider.Settings;import android.graphics.*;import android.view.*;import android.widget.*;import java.util.*;
+import android.app.*;import android.content.*;import android.os.*;import android.provider.Settings;import android.provider.MediaStore;import android.graphics.*;import android.view.*;import android.widget.*;import java.util.*;
 
 public class MainActivity extends Activity{
  static final String[] TASKS={"FLAPPY — 10 зелёных труб","Математика — 5 примеров","Фото предмета","Память — 6 плиток","Реакция","Порядок — 1→10","Цвет","Тряска"};
